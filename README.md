@@ -15,10 +15,14 @@ At present, baseline functionality is implemented and unit tested. The initial g
 
 ## Library Structure
 
-- `SwiftRIFF`: umbrella package target loads all package modules including additional file specification abstractions (ie: WAV)
-- `SwiftRIFFCore`: package target offers the basic `RIFFFile` type which allows parsing any generic RIFF-based file
-  - Custom RIFF chunk abstractions may be built by adopting the `RIFFFileChunk` protocol and passing these custom types into the `RIFFFile` parser so it can identify them during parsing (For an example, see the `WAVFile` type and its chunk implementation)
-- `SwiftRIFFWAV`: [WAV](https://en.wikipedia.org/wiki/WAV) file specification abstraction (which uses RIFF as its underlying file structure)
+- `SwiftRIFF`: umbrella package target which loads all submodules
+
+  - `SwiftRIFFCore`: package target offers the basic `RIFFFile` type which allows parsing any generic RIFF-based file
+
+    > Custom RIFF chunk abstractions may be built by adopting the `RIFFFileChunk` protocol and passing these custom types into the `RIFFFile` parser so it can identify them during parsing (For an example, see the `WAVFile` type and its chunk implementation)
+
+  - `SwiftRIFFWAV`: [WAV](https://en.wikipedia.org/wiki/WAV) file specification abstraction (which uses RIFF as its underlying file structure)
+
 
 ## Installation
 

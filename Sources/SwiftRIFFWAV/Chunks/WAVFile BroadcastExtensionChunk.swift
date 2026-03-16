@@ -21,7 +21,7 @@ extension WAVFile {
         
         public init(
             handle: FileHandle,
-            endianness: NumberEndianness,
+            endianness: DataEndianness,
             additionalChunkTypes: RIFFFileChunkTypes
         ) throws(RIFFFileReadError) {
             let descriptor = try handle.parseRIFFChunkDescriptor(endianness: endianness)

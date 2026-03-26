@@ -178,7 +178,7 @@ extension FileHandle {
         let concreteType = chunkTypes[descriptor.id] ?? RIFFFile.GenericChunk.self
         let chunk: any RIFFFileChunk = try concreteType.init(
             handle: self,
-            endianness: endianness,
+            byteOrder: endianness,
             additionalChunkTypes: additionalChunkTypes
         )
         

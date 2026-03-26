@@ -24,7 +24,7 @@ public protocol RIFFFileChunk: Equatable, Hashable, Sendable {
     
     init(
         handle: FileHandle,
-        endianness: ByteOrder,
+        byteOrder: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError)
 }

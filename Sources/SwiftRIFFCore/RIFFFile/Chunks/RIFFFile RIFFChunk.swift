@@ -35,10 +35,10 @@ extension RIFFFile {
 extension RIFFFile.RIFFChunk {
     public init(
         handle: FileHandle,
-        endianness: ByteOrder,
+        byteOrder: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) {
-        let descriptor = try handle.parseRIFFChunkDescriptor(endianness: endianness)
+        let descriptor = try handle.parseRIFFChunkDescriptor(endianness: byteOrder)
         
         guard descriptor.id == id else {
             throw .invalidChunkTypeIdentifier(chunkID: descriptor.id.id)
@@ -57,7 +57,7 @@ extension RIFFFile.RIFFChunk {
         // recursively parse child subchunks
         chunks = try handle.parseRIFFSubchunks(
             in: descriptor,
-            endianness: endianness,
+            endianness: byteOrder,
             additionalChunkTypes: additionalChunkTypes
         )
         .asAnyRIFFFileChunks()

@@ -42,10 +42,10 @@ extension RIFFFile {
 extension RIFFFile.INFOChunk {
     public init(
         handle: FileHandle,
-        endianness: ByteOrder,
+        byteOrder: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) {
-        let descriptor = try handle.parseRIFFChunkDescriptor(endianness: endianness)
+        let descriptor = try handle.parseRIFFChunkDescriptor(endianness: byteOrder)
         
         guard descriptor.id == id else {
             throw .invalidChunkTypeIdentifier(chunkID: descriptor.id.id)

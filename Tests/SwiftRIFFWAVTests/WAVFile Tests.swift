@@ -167,7 +167,7 @@ import Testing
         
         let bextChunk = try WAVFile.BroadcastExtensionChunk(
             handle: h,
-            endianness: RIFFFile.Format.riff.endianness,
+            byteOrder: RIFFFile.Format.riff.endianness,
             additionalChunkTypes: [:]
         )
         

@@ -18,10 +18,10 @@ extension WAVFile {
         
         public init(
             handle: FileHandle,
-            endianness: ByteOrder,
+            byteOrder: ByteOrder,
             additionalChunkTypes: RIFFFileChunkTypes
         ) throws(RIFFFileReadError) {
-            let descriptor = try handle.parseRIFFChunkDescriptor(endianness: endianness)
+            let descriptor = try handle.parseRIFFChunkDescriptor(endianness: byteOrder)
             
             guard descriptor.id == id else {
                 throw .invalidChunkTypeIdentifier(chunkID: descriptor.id.id)
@@ -40,7 +40,7 @@ extension WAVFile {
                 guard let data = try handle.read(upToCount: dataRange.count) else {
                     throw RIFFFileReadError.chunkLengthInvalid(forChunkID: descriptor.id.id)
                 }
-                metadata = try Metadata(data: data, endianness: endianness)
+                metadata = try Metadata(data: data, endianness: byteOrder)
             } catch let error as RIFFFileReadError { throw error }
             catch { throw .fileReadError(subError: error) }
         }

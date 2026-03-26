@@ -15,7 +15,7 @@ extension WAVFile {
         guard let chunk = try self.format() else {
             throw WAVFileReadError.missingFormatChunk
         }
-        let newData = format.data(endianness: riffFile.riffFormat.endianness)
+        let newData = format.data(endianness: riffFile.riffFormat.byteOrder)
         try riffFile.write(chunk: chunk, data: newData)
     }
 }
@@ -39,7 +39,7 @@ extension WAVFile {
         guard let chunk = try self.bext() else {
             throw WAVFileReadError.missingFormatChunk
         }
-        let newData = bext.data(endianness: riffFile.riffFormat.endianness)
+        let newData = bext.data(endianness: riffFile.riffFormat.byteOrder)
         try riffFile.write(chunk: chunk, data: newData)
     }
 }

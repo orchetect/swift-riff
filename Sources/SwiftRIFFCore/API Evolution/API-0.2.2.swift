@@ -20,6 +20,15 @@ extension RIFFFileChunk {
     }
 }
 
+extension RIFFFile.Format {
+    @_documentation(visibility: internal)
+    @_disfavoredOverload
+    @available(*, deprecated, renamed: "byteOrder")
+    public var endianness: ByteOrder {
+        byteOrder
+    }
+}
+
 extension FileHandle {
     @_documentation(visibility: internal)
     @_disfavoredOverload

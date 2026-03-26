@@ -26,7 +26,7 @@ extension FileHandle {
         case .rif2: throw .unsupportedRIF2Type
         }
         
-        let byteOrder: ByteOrder = riffFormat.endianness
+        let byteOrder: ByteOrder = riffFormat.byteOrder
         
         // rewind file handle position to file start
         do {

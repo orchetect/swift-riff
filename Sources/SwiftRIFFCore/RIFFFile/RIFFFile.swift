@@ -26,7 +26,7 @@ public struct RIFFFile {
     
     /// 4-Byte ASCII identifier describing the RIFF file type.
     ///
-    /// This format determines the byte endianness of data stored within the file.
+    /// This format determines the byte order (endianness) of data stored within the file.
     public let riffFormat: Format
     
     /// Chunks contained in the file.

@@ -22,7 +22,7 @@ extension RIFFFile {
             h = try FileHandle(forUpdating: url)
         } catch { throw .fileWriteError(subError: error) }
         
-        try h.writeRIFF(chunk: chunk, data: data, endianness: riffFormat.endianness)
+        try h.writeRIFF(chunk: chunk, data: data, endianness: riffFormat.byteOrder)
     }
 }
 

@@ -240,22 +240,22 @@ extension WAVFile.BroadcastExtensionChunk.Metadata {
     /// Returns the data portion of the chunk (omitting leading chunk ID and length).
     ///
     /// - Parameters:
-    ///   - endianness: Byte ordering.
+    ///   - byteOrder: Byte ordering.
     /// - Returns: Chunk data.
-    public func data(endianness: ByteOrder) -> Data {
+    public func data(byteOrder: ByteOrder) -> Data {
         let descriptionBytes = bwavDescriptionData
         let originatorBytes = originatorData
         let originatorReferenceBytes = originatorReferenceData
         let originationDateBytes = originationDate.nullPaddedASCIIStringBytes(length: 10)
         let originationTimeBytes = originationTime.nullPaddedASCIIStringBytes(length: 8)
-        let timeReferenceBytes = timeReference.toData(endianness).toUInt8Bytes()
-        let versionBytes = version.toData(endianness).toUInt8Bytes()
+        let timeReferenceBytes = timeReference.toData(byteOrder).toUInt8Bytes()
+        let versionBytes = version.toData(byteOrder).toUInt8Bytes()
         let umidBytes = umid.padding(toLength: 64, withPad: 0x00)
-        let loudnessValueBytes = loudnessValue.toData(endianness).toUInt8Bytes()
-        let loudnessRangeBytes = loudnessRange.toData(endianness).toUInt8Bytes()
-        let maxTruePeakLevelBytes = maxTruePeakLevel.toData(endianness).toUInt8Bytes()
-        let maxMomentaryLoudnessBytes = maxMomentaryLoudness.toData(endianness).toUInt8Bytes()
-        let maxShortTermLoudnessBytes = maxShortTermLoudness.toData(endianness).toUInt8Bytes()
+        let loudnessValueBytes = loudnessValue.toData(byteOrder).toUInt8Bytes()
+        let loudnessRangeBytes = loudnessRange.toData(byteOrder).toUInt8Bytes()
+        let maxTruePeakLevelBytes = maxTruePeakLevel.toData(byteOrder).toUInt8Bytes()
+        let maxMomentaryLoudnessBytes = maxMomentaryLoudness.toData(byteOrder).toUInt8Bytes()
+        let maxShortTermLoudnessBytes = maxShortTermLoudness.toData(byteOrder).toUInt8Bytes()
         let reservedBytes = Data(repeating: 0x00, count: 180)
         
         var bytes: [UInt8] = []

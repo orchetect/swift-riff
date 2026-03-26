@@ -15,4 +15,11 @@ extension WAVFile.BroadcastExtensionChunk.Metadata {
     public init(data: Data, endianness: ByteOrder) throws(WAVFileReadError) {
         try self.init(data: data, byteOrder: endianness)
     }
+    
+    @_documentation(visibility: internal)
+    @_disfavoredOverload
+    @available(*, deprecated, renamed: "data(endianness:)")
+    public func data(endianness: ByteOrder) -> Data {
+        data(byteOrder: endianness)
+    }
 }

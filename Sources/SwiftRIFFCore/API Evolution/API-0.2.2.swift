@@ -19,3 +19,14 @@ extension RIFFFileChunk {
         try self.init(handle: handle, byteOrder: endianness, additionalChunkTypes: additionalChunkTypes)
     }
 }
+
+extension FileHandle {
+    @_documentation(visibility: internal)
+    @_disfavoredOverload
+    @available(*, deprecated, renamed: "parseRIFFChunkDescriptor(byteOrder:)")
+    public func parseRIFFChunkDescriptor(
+        endianness: ByteOrder
+    ) throws(RIFFFileReadError) -> RIFFChunkDescriptor {
+        try parseRIFFChunkDescriptor(byteOrder: endianness)
+    }
+}

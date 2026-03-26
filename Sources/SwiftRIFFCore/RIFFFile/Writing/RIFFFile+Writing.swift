@@ -40,7 +40,7 @@ extension FileHandle {
         
         do {
             try seek(toOffset: chunk.range.lowerBound)
-            existingChunkDescriptor = try parseRIFFChunkDescriptor(endianness: endianness)
+            existingChunkDescriptor = try parseRIFFChunkDescriptor(byteOrder: endianness)
         } catch { throw .fileWriteError(subError: error) }
         
         guard existingChunkDescriptor.chunkRange.count == chunk.range.count else {

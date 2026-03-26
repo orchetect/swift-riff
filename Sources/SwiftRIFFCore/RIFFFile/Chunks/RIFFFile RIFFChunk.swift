@@ -38,7 +38,7 @@ extension RIFFFile.RIFFChunk {
         byteOrder: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) {
-        let descriptor = try handle.parseRIFFChunkDescriptor(endianness: byteOrder)
+        let descriptor = try handle.parseRIFFChunkDescriptor(byteOrder: byteOrder)
         
         guard descriptor.id == id else {
             throw .invalidChunkTypeIdentifier(chunkID: descriptor.id.id)

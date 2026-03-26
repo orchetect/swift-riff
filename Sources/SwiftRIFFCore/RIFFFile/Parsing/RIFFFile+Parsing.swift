@@ -34,7 +34,7 @@ extension FileHandle {
         } catch { throw .fileReadError(subError: error) }
         
         // advances 8 bytes
-        let riffDescriptor = try handle.parseRIFFChunkDescriptor(endianness: endianness)
+        let riffDescriptor = try handle.parseRIFFChunkDescriptor(byteOrder: endianness)
         let riffChunk = try handle.parseRIFFChunk(
             in: riffDescriptor,
             endianness: endianness,
@@ -65,7 +65,7 @@ extension FileHandle {
     /// Parses a RIFF chunk starting at the file handle's current offset.
     /// Returns a descriptor with its details.
     public func parseRIFFChunkDescriptor(
-        endianness: ByteOrder
+        byteOrder: ByteOrder
     ) throws(RIFFFileReadError) -> RIFFChunkDescriptor {
         let handle = self
         
@@ -98,7 +98,7 @@ extension FileHandle {
         
         guard let lengthBytes,
               lengthBytes.count == 4,
-              let dataLength = lengthBytes.toUInt32(from: endianness)
+              let dataLength = lengthBytes.toUInt32(from: byteOrder)
         else {
             throw .chunkLengthInvalid(forChunkID: idString)
         }
@@ -207,7 +207,7 @@ extension FileHandle {
         } catch { throw .chunkLengthInvalid(forChunkID: descriptor.id.id) }
         
         while try getOffset() < descriptor.chunkRange.upperBound {
-            let subchunkDescriptor = try parseRIFFChunkDescriptor(endianness: endianness)
+            let subchunkDescriptor = try parseRIFFChunkDescriptor(byteOrder: endianness)
             
             let chunk = try parseRIFFChunk(
                 in: subchunkDescriptor,

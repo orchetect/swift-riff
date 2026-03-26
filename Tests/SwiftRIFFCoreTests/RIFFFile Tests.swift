@@ -19,7 +19,7 @@ import Testing
         
         let h = try FileHandle(forReadingFrom: tempFile)
         
-        let descriptor = try h.parseRIFFChunkDescriptor(endianness: .littleEndian)
+        let descriptor = try h.parseRIFFChunkDescriptor(byteOrder: .littleEndian)
         
         #expect(descriptor.id == .riff)
         #expect(descriptor.subID == "WAVE")
@@ -39,7 +39,7 @@ import Testing
         
         let h = try FileHandle(forReadingFrom: tempFile)
         
-        let descriptor = try h.parseRIFFChunkDescriptor(endianness: .littleEndian)
+        let descriptor = try h.parseRIFFChunkDescriptor(byteOrder: .littleEndian)
         
         #expect(descriptor.id == .init(id: "fmt "))
         #expect(descriptor.subID == nil)

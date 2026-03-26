@@ -40,7 +40,7 @@ extension RIFFFile.GenericChunk {
         byteOrder: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) {
-        let descriptor = try handle.parseRIFFChunkDescriptor(endianness: byteOrder)
+        let descriptor = try handle.parseRIFFChunkDescriptor(byteOrder: byteOrder)
         
         id = descriptor.id
         range = descriptor.chunkRange

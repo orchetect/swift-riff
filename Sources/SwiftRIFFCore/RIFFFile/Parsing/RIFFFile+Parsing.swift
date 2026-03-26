@@ -26,7 +26,7 @@ extension FileHandle {
         case .rif2: throw .unsupportedRIF2Type
         }
         
-        let endianness: DataEndianness = riffFormat.endianness
+        let endianness: ByteOrder = riffFormat.endianness
         
         // rewind file handle position to file start
         do {
@@ -65,7 +65,7 @@ extension FileHandle {
     /// Parses a RIFF chunk starting at the file handle's current offset.
     /// Returns a descriptor with its details.
     public func parseRIFFChunkDescriptor(
-        endianness: DataEndianness
+        endianness: ByteOrder
     ) throws(RIFFFileReadError) -> RIFFChunkDescriptor {
         let handle = self
         
@@ -168,7 +168,7 @@ extension FileHandle {
     /// Parses a chunk and its data and returns a concrete type matching the chunk type.
     func parseRIFFChunk(
         in descriptor: RIFFChunkDescriptor,
-        endianness: DataEndianness,
+        endianness: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) -> any RIFFFileChunk {
         do { try seek(toOffset: descriptor.chunkRange.lowerBound) }
@@ -193,7 +193,7 @@ extension FileHandle {
     /// Not all chunk types support subchunks. Notably, the `RIFF` and `LIST` chunks contain subchunks.
     public func parseRIFFSubchunks(
         in descriptor: RIFFChunkDescriptor,
-        endianness: DataEndianness,
+        endianness: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) -> [any RIFFFileChunk] {
         var chunks: [any RIFFFileChunk] = []

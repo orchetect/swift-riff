@@ -40,7 +40,7 @@ extension WAVFile.FMTChunk.Metadata: Sendable { }
 
 extension WAVFile.FMTChunk.Metadata {
     /// Initializes from the data portion of the chunk (omitting leading chunk ID and length).
-    public init(data: Data, endianness: DataEndianness) throws(WAVFileReadError) {
+    public init(data: Data, endianness: ByteOrder) throws(WAVFileReadError) {
         // minimum data length is 16 bytes, but can also contain extra trailing bytes
         guard data.count >= 16 else { throw .malformedFormatChunk }
         
@@ -77,7 +77,7 @@ extension WAVFile.FMTChunk.Metadata {
     ///   - endianness: Byte ordering.
     ///   - extraBytes: Extra format bytes.
     /// - Returns: Chunk data.
-    public func data(endianness: DataEndianness) -> Data {
+    public func data(endianness: ByteOrder) -> Data {
         let avgBytesPerSec = UInt32((UInt64(sampleRate.rawValue) * UInt64(bitDepth.rawValue) * UInt64(channels)) / 8)
         let blockAlign = UInt16((bitDepth.rawValue * channels) / 8)
         

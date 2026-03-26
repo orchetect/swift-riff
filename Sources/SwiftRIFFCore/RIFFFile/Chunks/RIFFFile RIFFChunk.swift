@@ -35,7 +35,7 @@ extension RIFFFile {
 extension RIFFFile.RIFFChunk {
     public init(
         handle: FileHandle,
-        endianness: DataEndianness,
+        endianness: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) {
         let descriptor = try handle.parseRIFFChunkDescriptor(endianness: endianness)

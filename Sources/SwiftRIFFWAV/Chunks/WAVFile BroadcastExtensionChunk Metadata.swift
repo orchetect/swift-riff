@@ -147,7 +147,7 @@ extension WAVFile.BroadcastExtensionChunk.Metadata: Sendable { }
 
 extension WAVFile.BroadcastExtensionChunk.Metadata {
     /// Initializes from the data portion of the chunk (omitting leading chunk ID and length).
-    public init(data: Data, endianness: DataEndianness) throws(WAVFileReadError) {
+    public init(data: Data, endianness: ByteOrder) throws(WAVFileReadError) {
         // "bext" chunk is minimum 610 bytes including chunk name/length (602 for data chunk).
         // The data may or may not continue with an arbitrary number of ASCII characters defining its
         // Coding History segment.
@@ -242,7 +242,7 @@ extension WAVFile.BroadcastExtensionChunk.Metadata {
     /// - Parameters:
     ///   - endianness: Byte ordering.
     /// - Returns: Chunk data.
-    public func data(endianness: DataEndianness) -> Data {
+    public func data(endianness: ByteOrder) -> Data {
         let descriptionBytes = bwavDescriptionData
         let originatorBytes = originatorData
         let originatorReferenceBytes = originatorReferenceData

@@ -35,7 +35,7 @@ extension FileHandle {
     ///
     /// Note that the `data` portion is the range not including the chunk ID, chunk length,
     /// and chunk sub-ID (if present).
-    func writeRIFF(chunk: some RIFFFileChunk, data: Data, endianness: DataEndianness) throws(RIFFFileWriteError) {
+    func writeRIFF(chunk: some RIFFFileChunk, data: Data, endianness: ByteOrder) throws(RIFFFileWriteError) {
         let existingChunkDescriptor: RIFFChunkDescriptor
         
         do {

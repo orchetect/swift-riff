@@ -50,7 +50,7 @@ extension RIFFFile.Format: CustomStringConvertible {
 }
 
 extension RIFFFile.Format {
-    public var endianness: DataEndianness {
+    public var endianness: ByteOrder {
         switch self {
         case .riff: .littleEndian
         case .rifx: .bigEndian

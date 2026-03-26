@@ -22,7 +22,7 @@ extension RIFFFile {
             h = try FileHandle(forUpdating: url)
         } catch { throw .fileWriteError(subError: error) }
         
-        try h.writeRIFF(chunk: chunk, data: data, endianness: riffFormat.byteOrder)
+        try h.writeRIFF(chunk: chunk, data: data, byteOrder: riffFormat.byteOrder)
     }
 }
 
@@ -35,12 +35,12 @@ extension FileHandle {
     ///
     /// Note that the `data` portion is the range not including the chunk ID, chunk length,
     /// and chunk sub-ID (if present).
-    func writeRIFF(chunk: some RIFFFileChunk, data: Data, endianness: ByteOrder) throws(RIFFFileWriteError) {
+    func writeRIFF(chunk: some RIFFFileChunk, data: Data, byteOrder: ByteOrder) throws(RIFFFileWriteError) {
         let existingChunkDescriptor: RIFFChunkDescriptor
         
         do {
             try seek(toOffset: chunk.range.lowerBound)
-            existingChunkDescriptor = try parseRIFFChunkDescriptor(byteOrder: endianness)
+            existingChunkDescriptor = try parseRIFFChunkDescriptor(byteOrder: byteOrder)
         } catch { throw .fileWriteError(subError: error) }
         
         guard existingChunkDescriptor.chunkRange.count == chunk.range.count else {
@@ -65,7 +65,7 @@ extension FileHandle {
         let subID = chunk.getSubID?.data(using: .ascii)
         if let subID { guard subID.count == 4 else { throw .invalidChunkSubID } }
         
-        let chunkLengthData = UInt32(chunk.dataRange?.count ?? 0).toData(endianness)
+        let chunkLengthData = UInt32(chunk.dataRange?.count ?? 0).toData(byteOrder)
         guard chunkLengthData.count == 4 else { throw .invalidChunkLength }
         
         do {

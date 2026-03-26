@@ -4,8 +4,9 @@
 //  © 2025-2025 Steffan Andrews • Licensed under MIT License
 //
 
-import Foundation
-import SwiftExtensions
+import struct Foundation.Data
+import class Foundation.FileHandle
+import SwiftDataParsing
 
 extension FileHandle {
     /// Parses the file and returns the specific RIFF file format and its chunk information.

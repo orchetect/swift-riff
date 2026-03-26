@@ -5,9 +5,10 @@
 //
 
 import Foundation
-import SwiftExtensions
+import SwiftDataParsing
 import SwiftRIFFCore
-import SwiftTimecodeCore
+import struct SwiftTimecodeCore.Timecode
+import enum SwiftTimecodeCore.TimecodeFrameRate
 
 extension WAVFile.BroadcastExtensionChunk {
     public struct Metadata {

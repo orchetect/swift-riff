@@ -4,8 +4,8 @@
 //  © 2025-2025 Steffan Andrews • Licensed under MIT License
 //
 
-import Foundation
-import SwiftExtensions
+import class Foundation.FileHandle
+import enum SwiftDataParsing.ByteOrder
 
 extension RIFFFile {
     /// The optional INFO chunk.

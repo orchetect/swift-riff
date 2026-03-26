@@ -4,8 +4,9 @@
 //  © 2025-2025 Steffan Andrews • Licensed under MIT License
 //
 
-import Foundation
-import SwiftExtensions
+import struct Foundation.Data
+import class Foundation.FileHandle
+import enum SwiftDataParsing.ByteOrder
 
 extension RIFFFile {
     /// Replaces the chunk in the file on disk with the new chunk supplied.

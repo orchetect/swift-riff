@@ -4,8 +4,8 @@
 //  © 2025-2025 Steffan Andrews • Licensed under MIT License
 //
 
-import Foundation
-import SwiftExtensions
+import protocol Foundation.DataProtocol
+import SwiftDataParsing
 
 extension DataProtocol {
     /// Returns an ASCII string encoded as null-terminated.

@@ -6,7 +6,7 @@
 
 import struct Foundation.Data
 import class Foundation.FileHandle
-import SwiftDataParsing
+import enum SwiftDataParsing.ByteOrder
 
 extension WAVFile.BroadcastExtensionChunk.Metadata {
     @_documentation(visibility: internal)

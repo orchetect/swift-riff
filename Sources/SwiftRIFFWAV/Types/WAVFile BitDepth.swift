@@ -4,8 +4,6 @@
 //  © 2025-2025 Steffan Andrews • Licensed under MIT License
 //
 
-import Foundation
-
 extension WAVFile {
     /// WAV file bit-depth.
     public enum BitDepth: UInt16 {

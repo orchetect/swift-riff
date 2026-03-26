@@ -5,7 +5,7 @@
 //
 
 import class Foundation.FileHandle
-import SwiftDataParsing
+import enum SwiftDataParsing.ByteOrder
 
 extension RIFFFileChunk {
     @_documentation(visibility: internal)

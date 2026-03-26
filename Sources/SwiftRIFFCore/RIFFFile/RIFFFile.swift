@@ -4,8 +4,8 @@
 //  © 2025-2025 Steffan Andrews • Licensed under MIT License
 //
 
-import Foundation
-import SwiftExtensions
+import class Foundation.FileHandle
+import struct Foundation.URL
 
 /// A view into a RIFF-based file (RIFF, RIFX, RF64, RIF2).
 ///

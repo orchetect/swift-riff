@@ -4,8 +4,7 @@
 //  © 2025-2025 Steffan Andrews • Licensed under MIT License
 //
 
-import Foundation
-import SwiftExtensions
+import struct Foundation.Data
 import SwiftRIFFCore
 
 extension WAVFile {

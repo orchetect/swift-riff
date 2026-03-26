@@ -105,7 +105,7 @@ extension WAVFile.SampleRate: CustomStringConvertible {
         let value = if padded {
             "\(rawValue / 1000).\(("000" + String(rawValue % 1000)).suffix(3))"
         } else {
-            (Decimal(rawValue) / 1000).string
+            "\(Decimal(rawValue) / 1000)"
         }
         return "\(value)KHz"
     }

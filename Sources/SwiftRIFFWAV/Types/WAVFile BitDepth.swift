@@ -7,6 +7,7 @@
 import Foundation
 
 extension WAVFile {
+    /// WAV file bit-depth.
     public enum BitDepth: UInt16 {
         case bd8 = 8
         case bd16 = 16

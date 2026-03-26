@@ -7,6 +7,7 @@
 import Foundation
 import SwiftRIFFCore
 
+/// WAV file data read error.
 public enum WAVFileReadError: LocalizedError {
     case riffFileReadError(RIFFFileReadError)
     case riffFileWriteError(RIFFFileReadError)

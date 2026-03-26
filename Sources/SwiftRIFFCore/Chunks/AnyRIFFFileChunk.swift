@@ -6,6 +6,7 @@
 
 /// Type-erased box containing a specialized concrete ``RIFFFileChunk`` instance.
 public struct AnyRIFFFileChunk {
+    /// The chunk instance stored within the type-erased box.
     public var base: any RIFFFileChunk
     
     public init(base: any RIFFFileChunk) {
@@ -34,14 +35,21 @@ extension AnyRIFFFileChunk: CustomStringConvertible {
 }
 
 extension AnyRIFFFileChunk /* : RIFFFileChunk */ {
+    /// Chunk ID.
+    ///
+    /// 4-Byte ASCII identifier, padded with ASCII 32 (space) if less than 4 characters.
+    ///
+    /// This identifier determines the specification outlining the structure and format of this chunk.
     public var id: RIFFFileChunkID {
         base.id
     }
     
+    /// The total byte offset range of the entire chunk.
     public var range: ClosedRange<UInt64> {
         base.range
     }
     
+    /// The byte offset range of the chunk's usable data portion.
     public var dataRange: ClosedRange<UInt64>? {
         base.dataRange
     }

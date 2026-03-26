@@ -6,10 +6,19 @@
 
 /// Lightweight descriptor for a RIFF file chunk including its identity and byte ranges.
 public struct RIFFChunkDescriptor {
+    /// Chunk ID.
     public let id: RIFFFileChunkID
+    
+    /// Chunk sub-ID, if applicable.
     public let subID: String? // applicable to RIFF or LIST chunks only
+    
+    /// Chunk length.
     public let length: UInt32
+    
+    /// Chunk byte offset range (entire chunk including header).
     public let chunkRange: ClosedRange<UInt64>
+    
+    /// Chunk data byte offset range (chunk bytes that follow its header).
     public let dataRange: (usableRange: ClosedRange<UInt64>, encodedRange: ClosedRange<UInt64>)?
 }
 

@@ -273,6 +273,7 @@ extension WAVFile.Encoding: CustomStringConvertible {
 }
 
 extension WAVFile.Encoding {
+    /// Human-readable name of the encoding.
     public var name: String {
         switch self {
         case .unknown: "Unknown"

@@ -9,7 +9,7 @@
 public typealias RIFFFileChunkTypes = [RIFFFileChunkID: any RIFFFileChunk.Type]
 
 extension RIFFFileChunkTypes {
-    /// Standard RIFF file chunk types: RIFF, LIST, and INFO.
+    /// Standard RIFF file chunk types: `RIFF`, `LIST`, and `INFO`.
     /// All other chunk types will be considered generic chunks.
     public static var standard: Self {
         [

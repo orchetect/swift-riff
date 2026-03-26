@@ -7,7 +7,9 @@
 import Foundation
 
 extension WAVFile {
+    /// WAV file sample rate.
     public struct SampleRate {
+        /// Sample rate in Hz.
         public let rawValue: UInt32
         
         init(unsafe rate: UInt32) {

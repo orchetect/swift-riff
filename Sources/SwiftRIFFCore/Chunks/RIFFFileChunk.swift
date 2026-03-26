@@ -22,6 +22,12 @@ public protocol RIFFFileChunk: Equatable, Hashable, Sendable {
     /// The byte offset range of the chunk's usable data portion.
     var dataRange: ClosedRange<UInt64>? { get }
     
+    /// Initialize a new chunk by parsing the content of a file handle.
+    ///
+    /// - Parameters:
+    ///   - handle: File handle.
+    ///   - byteOrder: Byte order (endianness) of the file data.
+    ///   - additionalChunkTypes: Optionally supply chunk types to inform the parser of their existence.
     init(
         handle: FileHandle,
         byteOrder: ByteOrder,

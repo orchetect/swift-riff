@@ -193,7 +193,7 @@ extension FileHandle {
     /// Not all chunk types support subchunks. Notably, the `RIFF` and `LIST` chunks contain subchunks.
     public func parseRIFFSubchunks(
         in descriptor: RIFFChunkDescriptor,
-        endianness: ByteOrder,
+        byteOrder: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) -> [any RIFFFileChunk] {
         var chunks: [any RIFFFileChunk] = []
@@ -207,11 +207,11 @@ extension FileHandle {
         } catch { throw .chunkLengthInvalid(forChunkID: descriptor.id.id) }
         
         while try getOffset() < descriptor.chunkRange.upperBound {
-            let subchunkDescriptor = try parseRIFFChunkDescriptor(byteOrder: endianness)
+            let subchunkDescriptor = try parseRIFFChunkDescriptor(byteOrder: byteOrder)
             
             let chunk = try parseRIFFChunk(
                 in: subchunkDescriptor,
-                byteOrder: endianness,
+                byteOrder: byteOrder,
                 additionalChunkTypes: additionalChunkTypes
             )
             chunks.append(chunk)

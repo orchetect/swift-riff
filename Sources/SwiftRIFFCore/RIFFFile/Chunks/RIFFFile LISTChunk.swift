@@ -57,7 +57,7 @@ extension RIFFFile.LISTChunk {
         // recursively parse child subchunks
         chunks = try handle.parseRIFFSubchunks(
             in: descriptor,
-            endianness: byteOrder,
+            byteOrder: byteOrder,
             additionalChunkTypes: additionalChunkTypes
         )
         .asAnyRIFFFileChunks()

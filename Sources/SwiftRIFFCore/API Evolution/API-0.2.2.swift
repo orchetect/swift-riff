@@ -29,4 +29,15 @@ extension FileHandle {
     ) throws(RIFFFileReadError) -> RIFFChunkDescriptor {
         try parseRIFFChunkDescriptor(byteOrder: endianness)
     }
+    
+    @_documentation(visibility: internal)
+    @_disfavoredOverload
+    @available(*, deprecated, renamed: "parseRIFFSubchunks(id:byteOrder:additionalChunkTypes:)")
+    public func parseRIFFSubchunks(
+        in descriptor: RIFFChunkDescriptor,
+        endianness: ByteOrder,
+        additionalChunkTypes: RIFFFileChunkTypes
+    ) throws(RIFFFileReadError) -> [any RIFFFileChunk] {
+        try parseRIFFSubchunks(in: descriptor, byteOrder: endianness, additionalChunkTypes: additionalChunkTypes)
+    }
 }

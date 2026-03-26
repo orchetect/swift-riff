@@ -15,7 +15,7 @@ extension WAVFile {
         guard let chunk = try self.format() else {
             throw WAVFileReadError.missingFormatChunk
         }
-        let newData = format.data(endianness: riffFile.riffFormat.byteOrder)
+        let newData = format.data(byteOrder: riffFile.riffFormat.byteOrder)
         try riffFile.write(chunk: chunk, data: newData)
     }
 }

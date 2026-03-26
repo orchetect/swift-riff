@@ -74,19 +74,19 @@ extension WAVFile.FMTChunk.Metadata {
     /// Returns the data portion of the chunk (omitting leading chunk ID and length).
     ///
     /// - Parameters:
-    ///   - endianness: Byte ordering.
-    ///   - extraBytes: Extra format bytes.
+    ///   - byteOrder: Byte ordering.
+    ///
     /// - Returns: Chunk data.
-    public func data(endianness: ByteOrder) -> Data {
+    public func data(byteOrder: ByteOrder) -> Data {
         let avgBytesPerSec = UInt32((UInt64(sampleRate.rawValue) * UInt64(bitDepth.rawValue) * UInt64(channels)) / 8)
         let blockAlign = UInt16((bitDepth.rawValue * channels) / 8)
         
-        var bytes: [UInt8] = encoding.rawValue.toData(endianness).toUInt8Bytes()
-            + channels.toData(endianness).toUInt8Bytes()
-            + sampleRate.rawValue.toData(endianness).toUInt8Bytes()
-            + avgBytesPerSec.toData(endianness).toUInt8Bytes()
-            + blockAlign.toData(endianness).toUInt8Bytes()
-            + bitDepth.rawValue.toData(endianness).toUInt8Bytes()
+        var bytes: [UInt8] = encoding.rawValue.toData(byteOrder).toUInt8Bytes()
+            + channels.toData(byteOrder).toUInt8Bytes()
+            + sampleRate.rawValue.toData(byteOrder).toUInt8Bytes()
+            + avgBytesPerSec.toData(byteOrder).toUInt8Bytes()
+            + blockAlign.toData(byteOrder).toUInt8Bytes()
+            + bitDepth.rawValue.toData(byteOrder).toUInt8Bytes()
         
         if let extraBytes {
             bytes += extraBytes.toUInt8Bytes()

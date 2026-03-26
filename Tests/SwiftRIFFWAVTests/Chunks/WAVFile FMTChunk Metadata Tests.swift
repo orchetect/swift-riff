@@ -33,7 +33,7 @@ import Testing
         #expect(format.extraBytes == nil)
         
         // check raw data creation
-        #expect(format.data(endianness: .littleEndian) == Data(fmtBytes))
+        #expect(format.data(byteOrder: .littleEndian) == Data(fmtBytes))
     }
     
     @Test
@@ -61,6 +61,6 @@ import Testing
         #expect(format.extraBytes == Data([0x02, 0x00, 0x03, 0x04]))
         
         // check raw data creation
-        #expect(format.data(endianness: .littleEndian) == Data(fmtBytes))
+        #expect(format.data(byteOrder: .littleEndian) == Data(fmtBytes))
     }
 }

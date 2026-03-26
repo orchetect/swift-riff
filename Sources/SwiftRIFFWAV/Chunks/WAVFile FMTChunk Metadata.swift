@@ -40,25 +40,25 @@ extension WAVFile.FMTChunk.Metadata: Sendable { }
 
 extension WAVFile.FMTChunk.Metadata {
     /// Initializes from the data portion of the chunk (omitting leading chunk ID and length).
-    public init(data: Data, endianness: ByteOrder) throws(WAVFileReadError) {
+    public init(data: Data, byteOrder: ByteOrder) throws(WAVFileReadError) {
         // minimum data length is 16 bytes, but can also contain extra trailing bytes
         guard data.count >= 16 else { throw .malformedFormatChunk }
         
-        guard let encodingInt = data[0 ... 1].toUInt16(from: endianness),
+        guard let encodingInt = data[0 ... 1].toUInt16(from: byteOrder),
               let encoding = WAVFile.Encoding(rawValue: encodingInt)
         else { throw .invalidOrUnrecognizedAudioEncoding }
         self.encoding = encoding
         
-        guard let channelCount = data[2 ... 3].toUInt16(from: endianness)
+        guard let channelCount = data[2 ... 3].toUInt16(from: byteOrder)
         else { throw .invalidChannelCount }
         channels = channelCount
         
-        guard let srInt = data[4 ... 7].toUInt32(from: endianness),
+        guard let srInt = data[4 ... 7].toUInt32(from: byteOrder),
               let sr = WAVFile.SampleRate(rawValue: srInt)
         else { throw .invalidSampleRate }
         sampleRate = sr
         
-        guard let bdInt = data[14 ... 15].toUInt16(from: endianness),
+        guard let bdInt = data[14 ... 15].toUInt16(from: byteOrder),
               let bd = WAVFile.BitDepth(rawValue: bdInt)
         else { throw .invalidBitDepth }
         bitDepth = bd

@@ -23,3 +23,12 @@ extension WAVFile.BroadcastExtensionChunk.Metadata {
         data(byteOrder: endianness)
     }
 }
+
+extension WAVFile.FMTChunk.Metadata {
+    @_documentation(visibility: internal)
+    @_disfavoredOverload
+    @available(*, deprecated, renamed: "init(data:byteOrder:)")
+    public init(data: Data, endianness: ByteOrder) throws(WAVFileReadError) {
+        try self.init(data: data, byteOrder: endianness)
+    }
+}

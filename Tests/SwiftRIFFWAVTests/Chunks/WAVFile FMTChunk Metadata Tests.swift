@@ -23,7 +23,7 @@ import Testing
         ]
         
         // parse data
-        let format = try WAVFile.FMTChunk.Metadata(data: Data(fmtBytes), endianness: .littleEndian)
+        let format = try WAVFile.FMTChunk.Metadata(data: Data(fmtBytes), byteOrder: .littleEndian)
         
         // check parsed data
         #expect(format.encoding == .microsoft_PCM)
@@ -51,7 +51,7 @@ import Testing
         ]
         
         // parse data
-        let format = try WAVFile.FMTChunk.Metadata(data: Data(fmtBytes), endianness: .littleEndian)
+        let format = try WAVFile.FMTChunk.Metadata(data: Data(fmtBytes), byteOrder: .littleEndian)
         
         // check parsed data
         #expect(format.encoding == .olivetti_ADPCM)

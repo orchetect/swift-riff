@@ -43,7 +43,7 @@ extension WAVFile {
                 guard let data = try handle.read(upToCount: dataRange.count) else {
                     throw RIFFFileReadError.chunkLengthInvalid(forChunkID: descriptor.id.id)
                 }
-                metadata = try Metadata(data: data, endianness: byteOrder)
+                metadata = try Metadata(data: data, byteOrder: byteOrder)
             } catch let error as RIFFFileReadError { throw error }
             catch { throw .fileReadError(subError: error) }
         }

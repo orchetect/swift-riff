@@ -147,7 +147,7 @@ extension WAVFile.BroadcastExtensionChunk.Metadata: Sendable { }
 
 extension WAVFile.BroadcastExtensionChunk.Metadata {
     /// Initializes from the data portion of the chunk (omitting leading chunk ID and length).
-    public init(data: Data, endianness: ByteOrder) throws(WAVFileReadError) {
+    public init(data: Data, byteOrder: ByteOrder) throws(WAVFileReadError) {
         // "bext" chunk is minimum 610 bytes including chunk name/length (602 for data chunk).
         // The data may or may not continue with an arbitrary number of ASCII characters defining its
         // Coding History segment.
@@ -188,12 +188,12 @@ extension WAVFile.BroadcastExtensionChunk.Metadata {
         self.originationTime = originationTime
         
         // time reference (2 x 4-bytes)
-        guard let timeReference = data[338 ... 345].toUInt64(from: endianness)
+        guard let timeReference = data[338 ... 345].toUInt64(from: byteOrder)
         else { throw .malformedBroadcastExtensionChunk }
         self.timeReference = timeReference
         
         // version (2 bytes)
-        guard let version = data[346 ... 347].toUInt16(from: endianness)
+        guard let version = data[346 ... 347].toUInt16(from: byteOrder)
         else { throw .malformedBroadcastExtensionChunk }
         self.version = version
         
@@ -201,27 +201,27 @@ extension WAVFile.BroadcastExtensionChunk.Metadata {
         umid = data[348 ... 411]
         
         // loudness value (2 bytes)
-        guard let loudnessValue = data[412 ... 413].toUInt16(from: endianness)
+        guard let loudnessValue = data[412 ... 413].toUInt16(from: byteOrder)
         else { throw .malformedBroadcastExtensionChunk }
         self.loudnessValue = loudnessValue
         
         // loudness range (2 bytes)
-        guard let loudnessRange = data[414 ... 415].toUInt16(from: endianness)
+        guard let loudnessRange = data[414 ... 415].toUInt16(from: byteOrder)
         else { throw .malformedBroadcastExtensionChunk }
         self.loudnessRange = loudnessRange
         
         // max true peak level (2 bytes)
-        guard let maxTruePeakLevel = data[416 ... 417].toUInt16(from: endianness)
+        guard let maxTruePeakLevel = data[416 ... 417].toUInt16(from: byteOrder)
         else { throw .malformedBroadcastExtensionChunk }
         self.maxTruePeakLevel = maxTruePeakLevel
         
         // max momentary loudness (2 bytes)
-        guard let maxMomentaryLoudness = data[418 ... 419].toUInt16(from: endianness)
+        guard let maxMomentaryLoudness = data[418 ... 419].toUInt16(from: byteOrder)
         else { throw .malformedBroadcastExtensionChunk }
         self.maxMomentaryLoudness = maxMomentaryLoudness
         
         // max short term loudness (2 bytes)
-        guard let maxShortTermLoudness = data[420 ... 421].toUInt16(from: endianness)
+        guard let maxShortTermLoudness = data[420 ... 421].toUInt16(from: byteOrder)
         else { throw .malformedBroadcastExtensionChunk }
         self.maxShortTermLoudness = maxShortTermLoudness
         

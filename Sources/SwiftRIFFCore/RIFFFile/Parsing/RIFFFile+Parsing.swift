@@ -26,7 +26,7 @@ extension FileHandle {
         case .rif2: throw .unsupportedRIF2Type
         }
         
-        let endianness: ByteOrder = riffFormat.endianness
+        let byteOrder: ByteOrder = riffFormat.endianness
         
         // rewind file handle position to file start
         do {
@@ -34,10 +34,10 @@ extension FileHandle {
         } catch { throw .fileReadError(subError: error) }
         
         // advances 8 bytes
-        let riffDescriptor = try handle.parseRIFFChunkDescriptor(byteOrder: endianness)
+        let riffDescriptor = try handle.parseRIFFChunkDescriptor(byteOrder: byteOrder)
         let riffChunk = try handle.parseRIFFChunk(
             in: riffDescriptor,
-            endianness: endianness,
+            byteOrder: byteOrder,
             additionalChunkTypes: additionalChunkTypes
         )
         
@@ -168,7 +168,7 @@ extension FileHandle {
     /// Parses a chunk and its data and returns a concrete type matching the chunk type.
     func parseRIFFChunk(
         in descriptor: RIFFChunkDescriptor,
-        endianness: ByteOrder,
+        byteOrder: ByteOrder,
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) -> any RIFFFileChunk {
         do { try seek(toOffset: descriptor.chunkRange.lowerBound) }
@@ -178,7 +178,7 @@ extension FileHandle {
         let concreteType = chunkTypes[descriptor.id] ?? RIFFFile.GenericChunk.self
         let chunk: any RIFFFileChunk = try concreteType.init(
             handle: self,
-            byteOrder: endianness,
+            byteOrder: byteOrder,
             additionalChunkTypes: additionalChunkTypes
         )
         
@@ -211,7 +211,7 @@ extension FileHandle {
             
             let chunk = try parseRIFFChunk(
                 in: subchunkDescriptor,
-                endianness: endianness,
+                byteOrder: endianness,
                 additionalChunkTypes: additionalChunkTypes
             )
             chunks.append(chunk)

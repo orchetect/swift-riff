@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E2135C472E0BAF690064D352 /* SwiftRIFFWAV in Frameworks */ = {isa = PBXBuildFile; productRef = E2135C462E0BAF690064D352 /* SwiftRIFFWAV */; };
-		E2135C5C2E0BB2440064D352 /* TimecodeKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = E2135C5B2E0BB2440064D352 /* TimecodeKitCore */; };
 		E28062222ED66D5300B44729 /* SwiftRIFF in Frameworks */ = {isa = PBXBuildFile; productRef = E28062212ED66D5300B44729 /* SwiftRIFF */; };
 		E2C9AD742ED6A2EB009C3E72 /* SwiftRadix in Frameworks */ = {isa = PBXBuildFile; productRef = E2C9AD732ED6A2EB009C3E72 /* SwiftRadix */; };
+		E2FC7EB42F74FCD00055A9EC /* SwiftTimecode in Frameworks */ = {isa = PBXBuildFile; productRef = E2FC7EB32F74FCD00055A9EC /* SwiftTimecode */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2135C5C2E0BB2440064D352 /* TimecodeKitCore in Frameworks */,
+				E2FC7EB42F74FCD00055A9EC /* SwiftTimecode in Frameworks */,
 				E28062222ED66D5300B44729 /* SwiftRIFF in Frameworks */,
 				E2135C472E0BAF690064D352 /* SwiftRIFFWAV in Frameworks */,
 				E2C9AD742ED6A2EB009C3E72 /* SwiftRadix in Frameworks */,
@@ -77,9 +77,9 @@
 			name = WAVExample;
 			packageProductDependencies = (
 				E2135C462E0BAF690064D352 /* SwiftRIFFWAV */,
-				E2135C5B2E0BB2440064D352 /* TimecodeKitCore */,
 				E28062212ED66D5300B44729 /* SwiftRIFF */,
 				E2C9AD732ED6A2EB009C3E72 /* SwiftRadix */,
+				E2FC7EB32F74FCD00055A9EC /* SwiftTimecode */,
 			);
 			productName = RIFFExample;
 			productReference = E2135B5F2E0B7DCE0064D352 /* WAVExample.app */;
@@ -93,7 +93,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					E2135B5E2E0B7DCE0064D352 = {
 						CreatedOnToolsVersion = 16.4;
@@ -110,9 +110,9 @@
 			mainGroup = E2135B562E0B7DCE0064D352;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				E2135C5A2E0BB2440064D352 /* XCRemoteSwiftPackageReference "TimecodeKit" */,
-				E28062202ED66D5300B44729 /* XCLocalSwiftPackageReference "../../../swift-riff" */,
+				E28062202ED66D5300B44729 /* XCLocalSwiftPackageReference "../../" */,
 				E2C9AD722ED6A2EB009C3E72 /* XCRemoteSwiftPackageReference "swift-radix" */,
+				E2FC7EB22F74FCD00055A9EC /* XCRemoteSwiftPackageReference "swift-timecode" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E2135B602E0B7DCE0064D352 /* Products */;
@@ -179,6 +179,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = XWV9RUCWEG;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -204,6 +205,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
@@ -244,6 +246,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XWV9RUCWEG;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -262,6 +265,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 6.0;
 			};
@@ -276,6 +280,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -304,6 +309,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -347,27 +353,27 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		E28062202ED66D5300B44729 /* XCLocalSwiftPackageReference "../../../swift-riff" */ = {
+		E28062202ED66D5300B44729 /* XCLocalSwiftPackageReference "../../" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../swift-riff";
+			relativePath = ../../;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E2135C5A2E0BB2440064D352 /* XCRemoteSwiftPackageReference "TimecodeKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/orchetect/TimecodeKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.4;
-			};
-		};
 		E2C9AD722ED6A2EB009C3E72 /* XCRemoteSwiftPackageReference "swift-radix" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/orchetect/swift-radix";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.4.0;
+			};
+		};
+		E2FC7EB22F74FCD00055A9EC /* XCRemoteSwiftPackageReference "swift-timecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/swift-timecode";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -377,11 +383,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftRIFFWAV;
 		};
-		E2135C5B2E0BB2440064D352 /* TimecodeKitCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E2135C5A2E0BB2440064D352 /* XCRemoteSwiftPackageReference "TimecodeKit" */;
-			productName = TimecodeKitCore;
-		};
 		E28062212ED66D5300B44729 /* SwiftRIFF */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftRIFF;
@@ -390,6 +391,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2C9AD722ED6A2EB009C3E72 /* XCRemoteSwiftPackageReference "swift-radix" */;
 			productName = SwiftRadix;
+		};
+		E2FC7EB32F74FCD00055A9EC /* SwiftTimecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2FC7EB22F74FCD00055A9EC /* XCRemoteSwiftPackageReference "swift-timecode" */;
+			productName = SwiftTimecode;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

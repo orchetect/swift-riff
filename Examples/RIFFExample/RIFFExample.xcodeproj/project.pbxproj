@@ -101,7 +101,7 @@
 			mainGroup = E2135B562E0B7DCE0064D352;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				E280620B2ED66CD100B44729 /* XCLocalSwiftPackageReference "../../../swift-riff" */,
+				E280620B2ED66CD100B44729 /* XCLocalSwiftPackageReference "../../" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E2135B602E0B7DCE0064D352 /* Products */;
@@ -336,9 +336,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		E280620B2ED66CD100B44729 /* XCLocalSwiftPackageReference "../../../swift-riff" */ = {
+		E280620B2ED66CD100B44729 /* XCLocalSwiftPackageReference "../../" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../swift-riff";
+			relativePath = "../../";
 		};
 /* End XCLocalSwiftPackageReference section */
 

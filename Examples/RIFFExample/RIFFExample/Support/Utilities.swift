@@ -8,6 +8,7 @@ import Foundation
 import UniformTypeIdentifiers
 
 extension NSItemProvider {
+    nonisolated(nonsending)
     func loadFileURL() async -> URL? {
         guard let data = try? await loadItem(forTypeIdentifier: UTType.fileURL.identifier) as? Data else {
             print("Can't load data for dropped item."); return nil

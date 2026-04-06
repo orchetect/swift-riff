@@ -25,8 +25,8 @@ on:
     - cron: '42 07 * * *'   # once a day @ 7:42am UTC
 
 env:
-  SCHEME: "swift-riff"
-  WORKSPACEPATH: ".swiftpm/xcode/package.xcworkspace"
+  SCHEME: swift-riff
+  WORKSPACEPATH: .swiftpm/xcode/package.xcworkspace
 
 jobs:
   macOS:
@@ -91,7 +91,7 @@ jobs:
         WORKSPACEPATH: ${{ steps.sim-setup.outputs.workspace-path }}
 
   linux:
-    name: Linux
+    name: Tests (Linux)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

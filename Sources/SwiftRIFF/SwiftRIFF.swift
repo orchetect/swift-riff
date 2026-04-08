@@ -5,9 +5,9 @@
 //
 
 // Export all package targets as part of this umbrella target
-@_exported import SwiftRIFFCore
-@_exported import SwiftRIFFWAV
+@_exported public import SwiftRIFFCore
+@_exported public import SwiftRIFFWAV
 
 // Export 3rd-party types
-@_exported import class Foundation.FileHandle
-@_exported import enum SwiftDataParsing.ByteOrder
+@_exported public import class Foundation.FileHandle
+@_exported public import enum SwiftDataParsing.ByteOrder

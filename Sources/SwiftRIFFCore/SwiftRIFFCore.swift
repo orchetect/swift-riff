@@ -5,5 +5,5 @@
 //
 
 // Export 3rd-party types
-@_exported import class Foundation.FileHandle
-@_exported import enum SwiftDataParsing.ByteOrder
+@_exported public import class Foundation.FileHandle
+@_exported public import enum SwiftDataParsing.ByteOrder

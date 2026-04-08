@@ -5,5 +5,5 @@
 //
 
 // Export 3rd-party types
-@_exported import struct SwiftTimecodeCore.Timecode
-@_exported import enum SwiftTimecodeCore.TimecodeFrameRate
+@_exported public import struct SwiftTimecodeCore.Timecode
+@_exported public import enum SwiftTimecodeCore.TimecodeFrameRate

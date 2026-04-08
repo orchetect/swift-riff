@@ -1,8 +1,8 @@
 # swift-riff
 
-[![Platforms - macOS | iOS | tvOS | watchOS | visionOS](https://img.shields.io/badge/platforms-macOS%20|%20iOS%20|%20tvOS%20|%20watchOS%20|%20visionOS-blue.svg?style=flat)](https://developer.apple.com/swift) ![Swift 6.0](https://img.shields.io/badge/Swift-6.0-blue.svg?style=flat) [![Xcode 16](https://img.shields.io/badge/Xcode-16-blue.svg?style=flat)](https://developer.apple.com/swift) [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/orchetect/swift-riff/blob/main/LICENSE)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2Fswift-riff%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/orchetect/swift-riff) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2Fswift-riff%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/orchetect/swift-riff) [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/orchetect/swift-riff/blob/main/LICENSE)
 
-Swift package for Apple platforms for performant parsing, reading, and writing of [RIFF](https://en.wikipedia.org/wiki/Resource_Interchange_File_Format) files.
+Swift package for performant parsing, reading, and writing of [RIFF](https://en.wikipedia.org/wiki/Resource_Interchange_File_Format) files.
 
 ## Feature Set
 
@@ -37,7 +37,7 @@ To add this package to a Swift package, add the dependency to your package and t
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/orchetect/swift-riff", from: "0.2.0")
+        .package(url: "https://github.com/orchetect/swift-riff", from: "0.2.3")
     ],
     targets: [
         .target(

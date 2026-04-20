@@ -1,7 +1,7 @@
 //
 //  RIFFFile LISTChunk.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import class Foundation.FileHandle
@@ -17,7 +17,7 @@ extension RIFFFile {
         public var range: ClosedRange<UInt64>
         public var dataRange: ClosedRange<UInt64>?
         public var chunks: [AnyRIFFFileChunk]
-        
+
         public init(
             subID: String,
             chunks: [AnyRIFFFileChunk],
@@ -39,21 +39,21 @@ extension RIFFFile.LISTChunk {
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) {
         let descriptor = try handle.parseRIFFChunkDescriptor(byteOrder: byteOrder)
-        
+
         guard descriptor.id == id else {
             throw .invalidChunkTypeIdentifier(chunkID: descriptor.id.id)
         }
-        
+
         // contain a 4-byte ASCII string as the first four bytes of its data block
         guard let subID = descriptor.subID else {
             throw .missingChunkSubtypeIdentifier(chunkID: id.id)
         }
         self.subID = subID
-        
+
         range = descriptor.chunkRange
-        
+
         dataRange = descriptor.dataRange?.usableRange
-        
+
         // recursively parse child subchunks
         chunks = try handle.parseRIFFSubchunks(
             in: descriptor,

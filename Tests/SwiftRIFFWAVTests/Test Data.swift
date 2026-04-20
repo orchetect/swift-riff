@@ -1,7 +1,7 @@
 //
 //  Test Data.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 enum SampleWAV {
@@ -63,7 +63,7 @@ enum SampleBWAV {
         0x57, 0x41, 0x56, 0x45 // "WAVE" file type
     ] + junkChunkBytes + bextChunkBytes + fmtChunkBytes + dataChunkBytes
     // note that BWAV files often follow with numerous small additional metadata chunks after the data chunk
-    
+
     // 72 bytes
     static let junkChunkBytes: [UInt8] = [
         0x4A, 0x55, 0x4E, 0x4B,
@@ -85,7 +85,7 @@ enum SampleBWAV {
         0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00
     ]
-    
+
     // 610 bytes
     static let bextChunkBytes: [UInt8] = [
         0x62, 0x65, 0x78, 0x74,
@@ -167,7 +167,7 @@ enum SampleBWAV {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00
     ]
-    
+
     // 48 bytes
     static let fmtChunkBytes: [UInt8] = [
         0x66, 0x6D, 0x74, 0x20, // “fmt "
@@ -185,7 +185,7 @@ enum SampleBWAV {
         0x20, 0x21, 0x22, 0x23,
         0x24, 0x25, 0x26, 0x27
     ]
-    
+
     // 12 bytes
     static let dataChunkBytes: [UInt8] = [
         0x64, 0x61, 0x74, 0x61, // "data" chunk ID

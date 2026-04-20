@@ -1,7 +1,7 @@
 //
 //  RIFFFile+Writing.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import struct Foundation.Data
@@ -17,19 +17,19 @@ extension RIFFFile {
     /// and chunk sub-ID (if present).
     public func write(chunk: some RIFFFileChunk, data: Data) throws(RIFFFileWriteError) {
         guard let url else { throw .noFileURL }
-        
+
         let h: FileHandle
         do {
             h = try FileHandle(forUpdating: url)
         } catch { throw .fileWriteError(subError: error) }
-        
+
         try h.writeRIFF(chunk: chunk, data: data, byteOrder: riffFormat.byteOrder)
     }
 }
 
 extension FileHandle {
     // TODO: this needs rethinking, since RIFFFileChunk can contain subchunks but we're also asking for a Data parameter -- these two conflict with each other. Currently we're just ignoring subchunks that may be present in the `chunk`.
-    
+
     /// Replaces the chunk in the file on disk with the new chunk supplied.
     ///
     /// The total byte size of the existing chunk must match the byte size of the new chunk replacing it.
@@ -38,41 +38,41 @@ extension FileHandle {
     /// and chunk sub-ID (if present).
     func writeRIFF(chunk: some RIFFFileChunk, data: Data, byteOrder: ByteOrder) throws(RIFFFileWriteError) {
         let existingChunkDescriptor: RIFFChunkDescriptor
-        
+
         do {
             try seek(toOffset: chunk.range.lowerBound)
             existingChunkDescriptor = try parseRIFFChunkDescriptor(byteOrder: byteOrder)
         } catch { throw .fileWriteError(subError: error) }
-        
+
         guard existingChunkDescriptor.chunkRange.count == chunk.range.count else {
             throw .newChunkDoesNotMatchExistingChunkSize
         }
-        
+
         let dataRangeExcludingSubID = chunk.dataRangeExcludingSubID
-        
+
         guard data.count == dataRangeExcludingSubID?.count ?? 0 else {
             throw .newChunkDoesNotMatchExistingChunkSize
         }
-        
+
         // note: we've already guaranteed that there is enough room in the file to write our data
         // by reading the existing chunk descriptor above. so we don't need further validation.
-        
+
         // prepare bytes ahead of time before writing
-        
+
         guard let chunkIDData = chunk.id.id.data(using: .ascii),
               chunkIDData.count == 4
         else { throw .invalidChunkID }
-        
+
         let subID = chunk.getSubID?.data(using: .ascii)
         if let subID { guard subID.count == 4 else { throw .invalidChunkSubID } }
-        
+
         let chunkLengthData = UInt32(chunk.dataRange?.count ?? 0).toData(byteOrder)
         guard chunkLengthData.count == 4 else { throw .invalidChunkLength }
-        
+
         do {
             try seek(toOffset: chunk.range.lowerBound)
         } catch { throw .fileReadError(subError: error) }
-        
+
         do {
             try write(contentsOf: chunkIDData)
             try write(contentsOf: chunkLengthData)

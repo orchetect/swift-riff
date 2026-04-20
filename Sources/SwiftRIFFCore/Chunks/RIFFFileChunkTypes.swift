@@ -1,7 +1,7 @@
 //
 //  RIFFFileChunkTypes.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 /// Dictionary keyed by 4-character RIFF file ASCII string chunk ID, specifying the concrete type that
@@ -18,7 +18,7 @@ extension RIFFFileChunkTypes {
             .info: RIFFFile.INFOChunk.self
         ]
     }
-    
+
     /// Merge custom RIFF file chunk types into the standard set.
     public static func standard(merging other: Self) -> Self {
         standard.merging(other) { old, new in new }

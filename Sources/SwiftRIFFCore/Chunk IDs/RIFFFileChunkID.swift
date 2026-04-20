@@ -1,7 +1,7 @@
 //
 //  RIFFFileChunkID.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import SwiftExtensions
@@ -9,7 +9,7 @@ import SwiftExtensions
 /// RIFF File chunk ID.
 public struct RIFFFileChunkID {
     public let id: String
-    
+
     public init(id: String) {
         self.id = id
     }
@@ -17,19 +17,19 @@ public struct RIFFFileChunkID {
 
 extension RIFFFileChunkID: Equatable {
     // mixed-type methods in addition to the synthesized methods
-    
+
     public static func == (lhs: Self, rhs: some StringProtocol) -> Bool {
         lhs.id == rhs
     }
-    
+
     public static func == (lhs: some StringProtocol, rhs: Self) -> Bool {
         lhs == rhs.id
     }
-    
+
     public static func != (lhs: Self, rhs: some StringProtocol) -> Bool {
         lhs.id != rhs
     }
-    
+
     public static func != (lhs: some StringProtocol, rhs: Self) -> Bool {
         lhs != rhs.id
     }

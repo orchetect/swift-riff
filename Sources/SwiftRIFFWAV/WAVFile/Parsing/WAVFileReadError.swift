@@ -1,7 +1,7 @@
 //
 //  WAVFileReadError.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -11,7 +11,7 @@ import SwiftRIFFCore
 public enum WAVFileReadError: LocalizedError {
     case riffFileReadError(RIFFFileReadError)
     case riffFileWriteError(RIFFFileReadError)
-    
+
     case malformedBroadcastExtensionChunk
     case malformedFormatChunk
     case missingFormatChunk

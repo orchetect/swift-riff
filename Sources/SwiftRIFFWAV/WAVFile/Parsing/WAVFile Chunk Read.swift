@@ -1,7 +1,7 @@
 //
 //  WAVFile Chunk Read.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import class Foundation.FileHandle
@@ -16,7 +16,7 @@ extension WAVFile {
         let h = try FileHandle(forReadingFrom: url)
         return try format(handle: h)
     }
-    
+
     /// Returns the WAV file format chunk ("fmt ").
     /// Returns `nil` if the chunk is not found.
     /// Throws an error if there was a problem reading the data or the data is malformed.
@@ -26,7 +26,7 @@ extension WAVFile {
         else {
             return nil
         }
-        
+
         return fmtChunk
     }
 }
@@ -40,7 +40,7 @@ extension WAVFile {
         let h = try FileHandle(forReadingFrom: url)
         return try data(handle: h)
     }
-    
+
     /// Returns the WAV file data chunk ("data").
     /// Returns `nil` if the chunk is not found.
     /// Throws an error if there was a problem reading the data or the data is malformed.
@@ -50,7 +50,7 @@ extension WAVFile {
         else {
             return nil
         }
-        
+
         return fmtChunk
     }
 }
@@ -66,7 +66,7 @@ extension WAVFile {
         let h = try FileHandle(forReadingFrom: url)
         return try bext(handle: h)
     }
-    
+
     /// Returns the WAV file Broadcast Extension chunk ("bext").
     /// Returns `nil` if the chunk is not found.
     /// Throws an error if there was a problem reading the data or the data is malformed.
@@ -76,7 +76,7 @@ extension WAVFile {
         else {
             return nil
         }
-        
+
         return fmtChunk
     }
 }

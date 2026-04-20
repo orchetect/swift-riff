@@ -1,7 +1,7 @@
 //
 //  RIFFFile GenericChunk.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import class Foundation.FileHandle
@@ -19,13 +19,13 @@ extension RIFFFile {
         public var id: RIFFFileChunkID
         public var range: ClosedRange<UInt64>
         public var dataRange: ClosedRange<UInt64>?
-        
+
         public init(id: String, range: ClosedRange<UInt64>, dataRange: ClosedRange<UInt64>?) {
             self.id = RIFFFileChunkID(id: id)
             self.range = range
             self.dataRange = dataRange
         }
-        
+
         public init(id: RIFFFileChunkID, range: ClosedRange<UInt64>, dataRange: ClosedRange<UInt64>?) {
             self.id = id
             self.range = range
@@ -41,7 +41,7 @@ extension RIFFFile.GenericChunk {
         additionalChunkTypes: RIFFFileChunkTypes
     ) throws(RIFFFileReadError) {
         let descriptor = try handle.parseRIFFChunkDescriptor(byteOrder: byteOrder)
-        
+
         id = descriptor.id
         range = descriptor.chunkRange
         dataRange = descriptor.dataRange?.usableRange

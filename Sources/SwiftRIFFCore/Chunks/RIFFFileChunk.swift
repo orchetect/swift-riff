@@ -1,7 +1,7 @@
 //
 //  RIFFFileChunk.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import class Foundation.FileHandle
@@ -15,13 +15,13 @@ public protocol RIFFFileChunk: Equatable, Hashable, Sendable {
     ///
     /// This identifier determines the specification outlining the structure and format of this chunk.
     var id: RIFFFileChunkID { get }
-    
+
     /// The total byte offset range of the entire chunk.
     var range: ClosedRange<UInt64> { get }
-    
+
     /// The byte offset range of the chunk's usable data portion.
     var dataRange: ClosedRange<UInt64>? { get }
-    
+
     /// Initialize a new chunk by parsing the content of a file handle.
     ///
     /// - Parameters:
@@ -44,7 +44,7 @@ extension RIFFFileChunk {
         guard let self = self as? any RIFFFileChunkHasSubID else { return nil }
         return self.subID
     }
-    
+
     /// Convenience:
     /// Conditionally casts as ``RIFFFileChunkHasChunks`` and returns `chunks` if successful.
     public var getChunks: [AnyRIFFFileChunk]? {
@@ -60,29 +60,30 @@ extension RIFFFileChunk {
     public var dataRangeExcludingSubID: ClosedRange<UInt64>? {
         guard getSubID != nil else { return dataRange }
         guard let dataRange else { return nil }
-        
+
         let proposedLowerBound = dataRange.lowerBound.advanced(by: 4)
-        
+
         guard proposedLowerBound <= dataRange.upperBound else { return nil }
-        
+
         return proposedLowerBound ... dataRange.upperBound
     }
-    
+
     /// Returns a hierarchical info string describing the RIFF file's basic structure, suitable for debugging.
     public var info: String {
         var out = "􀟈 \"\(id)\""
         if let subID = getSubID { out += " \"\(subID)\"" }
         out += "\n"
-        
+
         out += "- Size: \(range.count) bytes\n"
-        
+
         let hexLowerBound = range.lowerBound.hex.stringValue(padToEvery: 2, prefix: false)
         let hexUpperBound = range.upperBound.hex.stringValue(padToEvery: 2, prefix: false)
         out += "- Byte Range (Hex): \(hexLowerBound) ... \(hexUpperBound)\n"
-        
+
         out += "- Byte Range (Int): \(range.lowerBound) ... \(range.upperBound)\n"
-        
-        out += (getChunks ?? []).map(\.base)
+
+        out += (getChunks ?? [])
+            .map(\.base)
             .map(\.info)
             .map {
                 var lines = $0.split(separator: "\n")
@@ -117,17 +118,17 @@ extension Sequence<any RIFFFileChunk> {
     public func filter(id: String) -> [Element] {
         filter { $0.id.id == id }
     }
-    
+
     /// Returns an array containing chunk(s) matching the given chunk IDs.
     public func filter(id: RIFFFileChunkID) -> [Element] {
         filter { $0.id == id }
     }
-    
+
     /// Returns the first chunk matching the given chunk ID string.
     public func first(id: String) -> Element? {
         first { $0.id.id == id }
     }
-    
+
     /// Returns the first chunk matching the given chunk ID.
     public func first(id: RIFFFileChunkID) -> Element? {
         first { $0.id == id }

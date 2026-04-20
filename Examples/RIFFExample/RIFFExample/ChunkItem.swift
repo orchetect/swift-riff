@@ -1,7 +1,7 @@
 //
 //  ChunkItem.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -11,7 +11,7 @@ struct ChunkItem: Equatable, Hashable, Identifiable, Sendable {
     let id = UUID()
     let chunk: AnyRIFFFileChunk
     let subitems: [ChunkItem]?
-    
+
     init(chunk: AnyRIFFFileChunk) {
         self.chunk = chunk
         subitems = chunk.chunks?.map(ChunkItem.init)

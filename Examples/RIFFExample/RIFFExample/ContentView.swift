@@ -1,7 +1,7 @@
 //
 //  ContentView.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import SwiftRIFFCore
@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 
 struct ContentView: View {
     @State private var file: RIFFFile?
-    
+
     var body: some View {
         VStack {
             if let file {
@@ -25,13 +25,13 @@ struct ContentView: View {
         }
         .padding()
     }
-    
+
     private func handleDrop(providers: [NSItemProvider]) {
         Task {
             guard let provider = providers.first,
                   let url = await provider.loadFileURL()
             else { return }
-            
+
             do {
                 file = try RIFFFile(url: url)
             } catch {

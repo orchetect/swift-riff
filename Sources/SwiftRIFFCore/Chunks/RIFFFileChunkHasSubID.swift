@@ -1,7 +1,7 @@
 //
 //  RIFFFileChunkHasSubID.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 /// Protocol trait for a `RIFFFileChunk` to describe a RIFF file chunk that contains a 4-byte ASCII identifier

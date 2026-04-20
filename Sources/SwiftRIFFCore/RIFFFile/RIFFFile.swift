@@ -1,7 +1,7 @@
 //
 //  RIFFFile.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import class Foundation.FileHandle
@@ -23,12 +23,12 @@ import struct Foundation.URL
 /// See [Wikipedia Article](https://en.wikipedia.org/wiki/Resource_Interchange_File_Format).
 public struct RIFFFile {
     public let url: URL?
-    
+
     /// 4-Byte ASCII identifier describing the RIFF file type.
     ///
     /// This format determines the byte order (endianness) of data stored within the file.
     public let riffFormat: Format
-    
+
     /// Chunks contained in the file.
     public let chunks: [AnyRIFFFileChunk]
 }
@@ -53,15 +53,15 @@ extension RIFFFile {
         do {
             h = try FileHandle(forReadingFrom: url)
         } catch { throw .fileReadError(subError: error) }
-        
+
         try self.init(handle: h, url: url, additionalChunkTypes: additionalChunkTypes)
     }
-    
+
     // TODO: add parser that can parse `Data` in memory without requiring a FileHandle
     // public init(data: Data) throws {
     //
     // }
-    
+
     /// Initialize by parsing a RIFF file on disk.
     ///
     /// - Parameters:

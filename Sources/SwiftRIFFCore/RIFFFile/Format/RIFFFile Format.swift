@@ -1,7 +1,7 @@
 //
 //  RIFFFile Format.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import enum SwiftExtensions.ByteOrder
@@ -15,17 +15,17 @@ extension RIFFFile {
         ///
         /// Uses little-endian unsigned integer byte ordering.
         case riff = "RIFF"
-        
+
         /// RIFX container.
         ///
         /// Uses little-endian unsigned integer byte ordering.
         case rifx = "RIFX"
-        
+
         /// RIF2 container.
         ///
         /// A 64-bit RIFF format used by Steinberg in Cubase and Nuendo.
         case rif2 = "RIF2"
-        
+
         /// RF64 container.
         ///
         /// A BWF-compatible multichannel audio file format enabling file sizes to exceed 4 GiB.

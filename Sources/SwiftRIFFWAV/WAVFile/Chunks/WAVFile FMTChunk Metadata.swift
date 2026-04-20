@@ -1,7 +1,7 @@
 //
 //  WAVFile FMTChunk Metadata.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import struct Foundation.Data
@@ -16,7 +16,7 @@ extension WAVFile.FMTChunk {
         public var bitDepth: WAVFile.BitDepth
         public var channels: UInt16
         public var extraBytes: Data?
-        
+
         public init(
             encoding: WAVFile.Encoding,
             sampleRate: WAVFile.SampleRate,
@@ -44,34 +44,34 @@ extension WAVFile.FMTChunk.Metadata {
     public init(data: Data, byteOrder: ByteOrder) throws(WAVFileReadError) {
         // minimum data length is 16 bytes, but can also contain extra trailing bytes
         guard data.count >= 16 else { throw .malformedFormatChunk }
-        
+
         guard let encodingInt = data[0 ... 1].toUInt16(from: byteOrder),
               let encoding = WAVFile.Encoding(rawValue: encodingInt)
         else { throw .invalidOrUnrecognizedAudioEncoding }
         self.encoding = encoding
-        
+
         guard let channelCount = data[2 ... 3].toUInt16(from: byteOrder)
         else { throw .invalidChannelCount }
         channels = channelCount
-        
+
         guard let srInt = data[4 ... 7].toUInt32(from: byteOrder),
               let sr = WAVFile.SampleRate(rawValue: srInt)
         else { throw .invalidSampleRate }
         sampleRate = sr
-        
+
         guard let bdInt = data[14 ... 15].toUInt16(from: byteOrder),
               let bd = WAVFile.BitDepth(rawValue: bdInt)
         else { throw .invalidBitDepth }
         bitDepth = bd
-        
+
         // TODO: add validation of non-stored chunk values
-        
+
         // parse extra bytes if present
         if data.count > 16 {
             extraBytes = data[16...]
         }
     }
-    
+
     /// Returns the data portion of the chunk (omitting leading chunk ID and length).
     ///
     /// - Parameters:
@@ -81,18 +81,18 @@ extension WAVFile.FMTChunk.Metadata {
     public func data(byteOrder: ByteOrder) -> Data {
         let avgBytesPerSec = UInt32((UInt64(sampleRate.rawValue) * UInt64(bitDepth.rawValue) * UInt64(channels)) / 8)
         let blockAlign = UInt16((bitDepth.rawValue * channels) / 8)
-        
+
         var bytes: [UInt8] = encoding.rawValue.toData(byteOrder).toUInt8Bytes()
             + channels.toData(byteOrder).toUInt8Bytes()
             + sampleRate.rawValue.toData(byteOrder).toUInt8Bytes()
             + avgBytesPerSec.toData(byteOrder).toUInt8Bytes()
             + blockAlign.toData(byteOrder).toUInt8Bytes()
             + bitDepth.rawValue.toData(byteOrder).toUInt8Bytes()
-        
+
         if let extraBytes {
             bytes += extraBytes.toUInt8Bytes()
         }
-        
+
         return Data(bytes)
     }
 }
@@ -100,7 +100,7 @@ extension WAVFile.FMTChunk.Metadata {
 extension WAVFile.FMTChunk.Metadata: CustomStringConvertible {
     public var description: String {
         var output = "encoding:\(encoding) samplerate:\(sampleRate) bitdepth:\(bitDepth) channels:\(channels)"
-        
+
         if let extraBytes {
             if extraBytes.allSatisfy({ $0 == 0x00 }) {
                 output += " + \(extraBytes.count) trailing null bytes"
@@ -108,7 +108,7 @@ extension WAVFile.FMTChunk.Metadata: CustomStringConvertible {
                 output += " + \(extraBytes.count) trailing bytes"
             }
         }
-        
+
         return output
     }
 }

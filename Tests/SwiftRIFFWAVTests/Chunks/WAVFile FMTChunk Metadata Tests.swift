@@ -1,16 +1,17 @@
 //
 //  WAVFile FMTChunk Metadata Tests.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
 @testable import SwiftRIFFWAV
 import Testing
 
-@Suite struct WAVFile_FMTChunk_Metadata_Tests {
+@Suite
+struct WAVFile_FMTChunk_Metadata_Tests {
     @Test
-    func fmtReadChunkMetadata() async throws {
+    func fmtReadChunkMetadata() throws {
         let fmtBytes: [UInt8] = [
             // 0x66, 0x6D, 0x74, 0x20, // “fmt "
             // 0x10, 0x00, 0x00, 0x00, // Format chunk length == int 16
@@ -21,23 +22,23 @@ import Testing
             0x06, 0x00, // (BitsPerSample * Channels) / 8 == int 6
             0x18, 0x00 // Bits per sample == int 24
         ]
-        
+
         // parse data
         let format = try WAVFile.FMTChunk.Metadata(data: Data(fmtBytes), byteOrder: .littleEndian)
-        
+
         // check parsed data
         #expect(format.encoding == .microsoft_PCM)
         #expect(format.sampleRate == .sr48000)
         #expect(format.bitDepth == .bd24)
         #expect(format.channels == 2)
         #expect(format.extraBytes == nil)
-        
+
         // check raw data creation
         #expect(format.data(byteOrder: .littleEndian) == Data(fmtBytes))
     }
-    
+
     @Test
-    func fmtReadChunkMetadataWithExtraBytes() async throws {
+    func fmtReadChunkMetadataWithExtraBytes() throws {
         let fmtBytes: [UInt8] = [
             // 0x66, 0x6D, 0x74, 0x20, // “fmt "
             // 0x10, 0x00, 0x00, 0x00, // Format chunk length == int 40
@@ -49,17 +50,17 @@ import Testing
             0x10, 0x00, // Bits per sample == int 16
             0x02, 0x00, 0x03, 0x04 // extra bytes
         ]
-        
+
         // parse data
         let format = try WAVFile.FMTChunk.Metadata(data: Data(fmtBytes), byteOrder: .littleEndian)
-        
+
         // check parsed data
         #expect(format.encoding == .olivetti_ADPCM)
         #expect(format.sampleRate == .sr44100)
         #expect(format.bitDepth == .bd16)
         #expect(format.channels == 6)
         #expect(format.extraBytes == Data([0x02, 0x00, 0x03, 0x04]))
-        
+
         // check raw data creation
         #expect(format.data(byteOrder: .littleEndian) == Data(fmtBytes))
     }

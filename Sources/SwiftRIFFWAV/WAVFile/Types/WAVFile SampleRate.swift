@@ -1,7 +1,7 @@
 //
 //  WAVFile SampleRate.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -11,7 +11,7 @@ extension WAVFile {
     public struct SampleRate {
         /// Sample rate in Hz.
         public let rawValue: UInt32
-        
+
         init(unsafe rate: UInt32) {
             assert(rate > 0)
             rawValue = rate
@@ -37,7 +37,7 @@ extension WAVFile.SampleRate: CaseIterable {
         .sr176400,
         .sr192000
     ]
-    
+
     /// Returns `true` if the rate is a standard (common) rate, such as 44100Hz or 48000Hz.
     public var isStandard: Bool {
         Self.allCases.contains(self)
@@ -49,36 +49,36 @@ extension WAVFile.SampleRate: Sendable { }
 extension WAVFile.SampleRate {
     /// 8000Hz
     public static let sr8000 = Self(unsafe: 8000)
-    
+
     /// 11025Hz
     public static let sr11025 = Self(unsafe: 11025)
-    
+
     /// 16000Hz
     public static let sr16000 = Self(unsafe: 16000)
-    
+
     /// 22050Hz
     public static let sr22050 = Self(unsafe: 22050)
-    
+
     /// 32000Hz
     public static let sr32000 = Self(unsafe: 32000)
-    
+
     /// 44100Hz
     public static let sr44100 = Self(unsafe: 44100)
-    
+
     /// 48000Hz
     public static let sr48000 = Self(unsafe: 48000)
-    
+
     /// 88200Hz
     public static let sr88200 = Self(unsafe: 88200)
-    
+
     /// 96000Hz
     public static let sr96000 = Self(unsafe: 96000)
-    
+
     /// 176400Hz
-    public static let sr176400 = Self(unsafe: 176400)
-    
+    public static let sr176400 = Self(unsafe: 176_400)
+
     /// 192000Hz
-    public static let sr192000 = Self(unsafe: 192000)
+    public static let sr192000 = Self(unsafe: 192_000)
 }
 
 extension WAVFile.SampleRate: RawRepresentable {
@@ -92,15 +92,15 @@ extension WAVFile.SampleRate: CustomStringConvertible {
     public var description: String {
         khzString()
     }
-    
+
     public var verboseDescription: String {
         description + (!isStandard ? " (Non-Standard)" : "")
     }
-    
+
     public var hzString: String {
         "\(rawValue)Hz"
     }
-    
+
     public func khzString(padded: Bool = false) -> String {
         let value = if padded {
             "\(rawValue / 1000).\(("000" + String(rawValue % 1000)).suffix(3))"

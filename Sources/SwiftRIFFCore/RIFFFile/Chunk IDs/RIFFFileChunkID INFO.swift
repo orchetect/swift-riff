@@ -1,7 +1,7 @@
 //
 //  RIFFFileChunkID INFO.swift
 //  swift-riff • https://github.com/orchetect/swift-riff
-//  © 2025-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 extension RIFFFileChunkID {
@@ -24,5 +24,7 @@ extension RIFFFileChunkID {
     /// > correct position for this chunk within a file.
     /// >
     /// > [See Article](https://en.wikipedia.org/wiki/Resource_Interchange_File_Format#Use_of_the_INFO_chunk)
-    public static var info: Self { Self(id: "INFO") }
+    public static var info: Self {
+        Self(id: "INFO")
+    }
 }

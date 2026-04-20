@@ -9,6 +9,9 @@ import SwiftRIFFCore
 @testable import SwiftRIFFWAV
 import Testing
 
+// swiftformat:options --wrap-collections preserve
+// swiftformat:options --allow-partial-wrapping true
+
 @Suite
 struct WAVFile_Tests {
     @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)

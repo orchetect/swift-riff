@@ -4,6 +4,9 @@
 //  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
+// swiftformat:options --wrap-collections preserve
+// swiftformat:options --allow-partial-wrapping true
+
 enum SampleWAV {
     // (all integers are stored little-endian)
     // note that this mocks the structure of a wave file for purposes of unit testing,

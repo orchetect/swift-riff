@@ -8,6 +8,9 @@ import Foundation
 @testable import SwiftRIFFWAV
 import Testing
 
+// swiftformat:options --wrap-collections preserve
+// swiftformat:options --allow-partial-wrapping true
+
 @Suite
 struct WAVFile_FMTChunk_Metadata_Tests {
     @Test

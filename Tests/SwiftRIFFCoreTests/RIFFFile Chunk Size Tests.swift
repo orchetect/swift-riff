@@ -52,6 +52,9 @@ struct RIFFFile_ChunkSize_Tests {
 
 // MARK: - Mock Data
 
+// swiftformat:options --wrap-collections preserve
+// swiftformat:options --allow-partial-wrapping true
+
 private enum SampleRIFF {
     // (all integers are stored little-endian)
     static var fileBytes: [UInt8] {

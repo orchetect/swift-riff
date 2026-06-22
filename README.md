@@ -1,4 +1,4 @@
-# swift-riff
+# SwiftRIFF
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2Fswift-riff%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/orchetect/swift-riff) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2Fswift-riff%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/orchetect/swift-riff) [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/orchetect/swift-riff/blob/main/LICENSE)
 
@@ -82,7 +82,7 @@ Licensed under the MIT license. See [LICENSE](https://github.com/orchetect/swift
 
 ## Sponsoring
 
-If you enjoy using swift-riff and want to contribute to open-source financially, GitHub sponsorship is much appreciated. Feedback and code contributions are also welcome.
+If you enjoy using SwiftRIFF and want to contribute to open-source financially, GitHub sponsorship is much appreciated. Feedback and code contributions are also welcome.
 
 ## Community & Support
 

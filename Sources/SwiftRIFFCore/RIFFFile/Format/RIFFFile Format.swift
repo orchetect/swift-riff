@@ -4,7 +4,7 @@
 //  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
-import enum SwiftExtensions.ByteOrder
+import enum SwiftDataParsing.ByteOrder
 
 extension RIFFFile {
     /// RIFF-derived container format.

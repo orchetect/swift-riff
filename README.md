@@ -37,7 +37,7 @@ To add this package to a Swift package, add the dependency to your package and t
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/orchetect/swift-riff", from: "0.2.3")
+        .package(url: "https://github.com/orchetect/swift-riff", from: "0.2.4")
     ],
     targets: [
         .target(

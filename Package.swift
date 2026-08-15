@@ -14,7 +14,7 @@ let package = Package(
         .package(url: "https://github.com/orchetect/swift-data-parsing", from: "0.1.2"),
         .package(url: "https://github.com/orchetect/swift-extensions", from: "3.0.0"),
         .package(url: "https://github.com/orchetect/swift-radix", from: "1.4.1"),
-        .package(url: "https://github.com/orchetect/swift-timecode", from: "3.1.3")
+        .package(url: "https://github.com/orchetect/swift-timecode", from: "3.1.4")
     ],
     targets: [
         .target(

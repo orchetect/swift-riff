@@ -290,8 +290,15 @@ extension WAVFile.BroadcastExtensionChunk.Metadata {
 
 extension WAVFile.BroadcastExtensionChunk.Metadata {
     public func timecode(at frameRate: TimecodeFrameRate, sampleRate: WAVFile.SampleRate) throws -> Timecode {
-        try Timecode(
-            .samples(Int(timeReference), sampleRate: Int(sampleRate.rawValue)),
+        // as of SwiftTimecode 3.1.4, 64-bit and 32-bit platforms use different integer types for certain values
+        #if _pointerBitWidth(_64) || _pointerBitWidth(_128)
+        let samples = Int(timeReference)
+        #elseif _pointerBitWidth(_32)
+        let samples = Int64(timeReference)
+        #endif
+
+        return try Timecode(
+            .samples(samples, sampleRate: Int(sampleRate.rawValue)),
             at: frameRate
         )
     }
